@@ -90,6 +90,7 @@
     "jsonpath-plus": "^10.0.0",
     "node-html-parser": "^6.0.0",
     "parse-github-repo-url": "^1.4.1",
+    "release-please": "github:kellerbrown/release-please",
     "semver": "^7.5.3",
     "type-fest": "^3.0.0",
     "typescript": "^4.6.4",

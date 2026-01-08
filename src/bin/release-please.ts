@@ -103,6 +103,8 @@ interface PullRequestStrategyArgs {
   changelogPath?: string;
   changelogHost?: string;
   versioningStrategy?: VersioningStrategyType;
+  dateFormat?: string;
+  calverScheme?: string;
 
   // for Ruby: TODO refactor to find version.rb like Python finds version.py
   // and then remove this property
@@ -350,6 +352,10 @@ function pullRequestStrategyOptions(yargs: yargs.Argv): yargs.Argv {
       describe: 'format in strftime format for updating dates',
       type: 'string',
     })
+    .option('calver-scheme', {
+      describe: 'CalVer scheme format for calendar versioning (e.g., YYYY.0M.MICRO)',
+      type: 'string',
+    })
     .middleware(_argv => {
       const argv = _argv as CreatePullRequestArgs;
 
@@ -479,6 +485,7 @@ const createReleasePullRequestCommand: yargs.CommandModule<
           changelogSections: argv.changelogSections,
           releaseAs: argv.releaseAs,
           versioning: argv.versioningStrategy,
+          calverScheme: argv.calverScheme,
           extraFiles: argv.extraFiles,
           versionFile: argv.versionFile,
           includeComponentInTag: argv.monorepoTags,
